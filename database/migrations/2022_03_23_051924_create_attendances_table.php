@@ -17,8 +17,8 @@ class CreateAttendancesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->dateTime('attend_time');
-            $table->dateTime('leave_time')->nullable();
+            $table->timestamp('attend_time');
+            $table->timestamp('leave_time')->nullable();
             $table->timestamps();
         });
     }
