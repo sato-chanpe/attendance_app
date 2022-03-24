@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AttendanceController@add');
+Route::post('/attend', 'AttendanceController@attend');
+Route::post('/leave', 'AttendanceController@leave');
 
 Auth::routes();
 
