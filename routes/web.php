@@ -10,11 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'AttendanceController@add');
-Route::post('/attend', 'AttendanceController@attend');
-Route::post('/leave', 'AttendanceController@leave');
+Route::group(["middleware"=>"auth"],function(){
+    Route::get('/', 'AttendanceController@add');
+    Route::post('/attend', 'AttendanceController@attend');
+    Route::post('/leave', 'AttendanceController@leave');
+});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix'=>'admin'], function () {
+    Route::get('/', 'Admin\UserController@index')->name('admin.top');
+});

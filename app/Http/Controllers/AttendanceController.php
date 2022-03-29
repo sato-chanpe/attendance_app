@@ -10,12 +10,12 @@ use Auth;
 class AttendanceController extends Controller
 {
     public function add(){
-        return view('top');
+        return view('attendance.attend');
     }
     
     public function attend(){
         $attendance = new Attendance;
-        $attendance->attende_time = Carbon::now();
+        $attendance->attend_time = Carbon::now();
         $attendance->user_id = Auth::id();
         $attendance->save();
         

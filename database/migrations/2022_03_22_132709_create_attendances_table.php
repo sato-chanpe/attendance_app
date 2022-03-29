@@ -18,7 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->integer('user_id')->unsigned(); //unsigned:符号無し
             $table->foreign('user_id')->references('id')->on('users');
             //18行目で定義したuser_idに追加で設定。存在しないuser_idを定義できなくする。なくても動くけど。
-            $table->dateTime('attende_time');
+            $table->dateTime('attend_time');
             $table->dateTime('leave_time')->nullable();
             $table->timestamps();
         });
