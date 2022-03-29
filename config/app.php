@@ -227,5 +227,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    
+    //時給計算をする時の刻み幅（現状15分）
+    'duration' => 15,
 
 ];

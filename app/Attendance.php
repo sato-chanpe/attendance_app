@@ -10,16 +10,11 @@ class Attendance extends Model
     
     public function getWorkingMinutesAttribute()
     {
-        return $this->leave_time && $this->attend_time ? $this->leave_time->diffInMinutes($this->attend_time) : 0;
-        
-        // if($this->leave_time && $this->attend_time){
-        //  return $this->leave_time->diffInMinutes($this->attend_time);
-        // }else{
-        //  return 0;
-        // };
-        
-        //&&：かつ
-        
-        
+        $working_minutes = $this->leave_time && $this->attend_time ? $this->leave_time->diffInMinutes($this->attend_time) : 0;
+        if($working_minutes > 0){
+            $working_minutes = $working_minutes - $working_minutes % config('app.duration');
+            
+        }
+        return $working_minutes;
     }
 }
