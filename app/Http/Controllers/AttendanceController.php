@@ -18,7 +18,6 @@ class AttendanceController extends Controller
         $attendance->attend_time = Carbon::now();
         $attendance->user_id = Auth::id();
         $attendance->save();
-        
         return redirect()->back();
     }
     
@@ -28,5 +27,4 @@ class AttendanceController extends Controller
         $leave->save();
         return redirect()->back();
     }
-    
 }

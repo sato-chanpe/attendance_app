@@ -20,4 +20,6 @@ Auth::routes();
 
 Route::group(['prefix'=>'admin'], function () {
     Route::get('/', 'Admin\UserController@index')->name('admin.top');
+    Route::get('/users/{user}', 'Admin\UserController@showMonthly');
 });
+

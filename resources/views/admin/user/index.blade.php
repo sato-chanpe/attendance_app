@@ -25,14 +25,20 @@
       </thead>
       <tbody>
           @foreach($users as $user)
-            　<tr>
-                  <th scope="row">{{ $user->id }}</th>
-                  <td>{{ $user->name }}</td>
-                  @for($i = 1; $i <= 12; $i++)
-                    <?php $monthlyTotalMinutes = $user->getMonthlyTotalWorkingMinutes($displayed_year, $i); ?>
-                    <td style="width: 7%">{{ $monthlyTotalMinutes == 0 ? "-" : getFormatedDatetimeFromMinutes($monthlyTotalMinutes) }}</td>
-                  @endfor
-            　</tr>
+          　<tr>
+              <th scope="row">{{ $user->id }}</th>
+              <td>{{ $user->name }}</td>
+              @for($i = 1; $i <= 12; $i++)
+                <?php $monthlyTotalMinutes = $user->getMonthlyTotalWorkingMinutes($displayed_year, $i); ?>
+               <td style="width: 7%">
+                    @if($monthlyTotalMinutes == 0)
+                        -
+                    @else
+                        <a href={{ action("Admin\UserController@showMonthly",["user"=>$user, "y"=>$displayed_year, "m"=>$i]) }}>{{ getFormatedDatetimeFromMinutes($monthlyTotalMinutes) }}</a>
+                    @endif
+               </td>
+              @endfor
+          　</tr>
           @endforeach
       </tbody>
     </table>

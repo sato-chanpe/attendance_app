@@ -18,4 +18,12 @@ class UserController extends Controller
         $displayed_year = $request->year ? $request->year : Carbon::now()->year;
         return view('admin.user.index', compact('users', 'year_selections', 'displayed_year'));
     }
+    
+    public function showMonthly(User $user, Request $request)
+    {
+        $y = $request->y;
+        $m = $request->m;
+        $attendances = $user->attendances()->whereYear('attend_time', '=', $y)->whereMonth('attend_time', '=', $m)->get();
+        return view('admin.user.show_monthly', compact('user', 'attendances', 'y', 'm'));
+    }
 }
